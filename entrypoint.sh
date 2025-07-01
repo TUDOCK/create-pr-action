@@ -21,10 +21,10 @@ check_create_PR_response() {
     if [ "$ERROR" != null ]; then
       PR_EXISTS=$(echo "${ERROR}" | jq 'select(. | contains("A pull request already exists for"))')
       if [ "$PR_EXISTS" != null ]; then
-        echo "::info:: PR exists from $CURRENT_BRANCH against $BASE_BRANCH"
+        echo "::info:: PR exists from $HEAD_BRANCH against $BASE_BRANCH"
         exit 0
       else
-        echo "::ERROR:: Error in creating PR from $CURRENT_BRANCH against $BASE_BRANCH: $ERROR "
+        echo "::ERROR:: Error in creating PR from $HEAD_BRANCH against $BASE_BRANCH: $ERROR "
         exit 1
       fi
     fi
